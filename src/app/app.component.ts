@@ -49,5 +49,9 @@ export class AppComponent implements OnInit  {
       })
   }
 
+  Number(text: string) {
+    return Number(text);
+  }
+
 
 }

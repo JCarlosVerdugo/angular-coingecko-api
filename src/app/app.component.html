@@ -19,7 +19,7 @@
         <td>
           {{coin.priceUsd | currency}}
         </td>
-        <td>
+        <td [ngClass]="(Number(coin.priceQuote) > 1) ? 'text-success' : 'text-danger' ">
           {{coin.priceQuote | currency}}
         </td>
         <td>
