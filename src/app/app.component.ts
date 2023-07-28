@@ -24,6 +24,7 @@ interface Coin{
 })
 export class AppComponent implements OnInit  {
   coins: Coin[] = [];
+  filteredCoins: Coin[] = [];
   titles: string[] = [
     '#',
     'Coin',
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit  {
     'Price Change',
     '24h Volume',
   ];
+  searchText = '';
 
   constructor(
     private http: HttpClient
@@ -42,6 +44,7 @@ export class AppComponent implements OnInit  {
       .subscribe({
         next: (res: any) => {
           this.coins = res.data;
+          this.filteredCoins = res.data;
         },
         error: (err) => {
           console.log(err)
@@ -51,6 +54,13 @@ export class AppComponent implements OnInit  {
 
   Number(text: string) {
     return Number(text);
+  }
+
+
+  searchCoin() {
+    this.coins = this.filteredCoins.filter(coin =>
+      coin.baseId.toLowerCase().trim().includes(this.searchText)
+    );
   }
 
 
